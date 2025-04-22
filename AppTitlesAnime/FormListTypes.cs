@@ -45,11 +45,6 @@ namespace AppTitlesAnime
             this.db = null;
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnAddType_Click(object sender, EventArgs e)
         {
             FormAddType formAddType = new();
@@ -71,6 +66,67 @@ namespace AppTitlesAnime
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void btnUpdateType_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewTypes.SelectedRows.Count == 0)
+                return;  
+
+            int index = dataGridViewTypes.SelectedRows[0].Index;
+            short id = 0;
+            bool converted = Int16.TryParse(dataGridViewTypes[0, index].Value.ToString(), out id);
+            if (!converted)
+                return;
+
+            Type type=db.Types.Find(id);
+            FormAddType formAddType = new();
+            formAddType.textBoxTypeName.Text = type.TypeName;
+
+            DialogResult result = formAddType.ShowDialog(this);
+
+            if (result == DialogResult.Cancel)
+                return;
+
+            type.TypeName= formAddType.textBoxTypeName.Text;
+            db.Types.Update(type);
+            db.SaveChanges();
+
+            MessageBox.Show("Объект изменён");
+
+            this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
+        }
+
+        private void btnDeleteType_Click(object sender, EventArgs e)
+        {
+            if (dataGridViewTypes.SelectedRows.Count == 0)
+                return;
+
+            DialogResult result = MessageBox.Show(
+                "Вы уверены,что хотите удалить объект? \nВсе связанные данные будут удалены.",
+                "",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+                );
+
+            if (result == DialogResult.No)
+                return;
+
+            int index = dataGridViewTypes.SelectedRows[0].Index;
+            short id = 0;
+            bool converted = Int16.TryParse(dataGridViewTypes[0, index].Value.ToString(), out id);
+            if (!converted)
+                return;
+
+            Type type = db.Types.Find(id);
+
+            db.Types.Remove(type);
+            db.SaveChanges();
+
+            MessageBox.Show("Объект удалён");
+
+            this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
 
         }
     }
