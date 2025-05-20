@@ -1,0 +1,60 @@
+﻿using System.ComponentModel;
+using AppContext = AppTitlesAnime.Models.AppContext;
+
+namespace AppTitlesAnime
+{
+    public partial class FormAddStatus : Form
+    {
+        private AppContext db; 
+        public FormAddStatus()
+        {
+            InitializeComponent();
+            this.db = new AppContext();
+        }
+
+        private void TextBoxStatusName_Validating(object sender, CancelEventArgs e)
+        {
+            if (String.IsNullOrEmpty(textBoxStatusName.Text))
+            {
+                errorProvider.SetError(textBoxStatusName, "Поле не может быть пустым");
+                btnSaveChanges.Enabled = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+                btnSaveChanges.Enabled = true;
+            }
+            string newStatusName = textBoxStatusName.Text;
+            bool exists = db.Statuses.Any(t => t.StatusName.ToLower() == newStatusName.ToLower());
+            if (exists)
+            {
+                errorProvider.SetError(textBoxStatusName, "Статус с таким именем уже существует");
+                btnSaveChanges.Enabled = false;
+                return;
+            }
+        }
+
+        private void TextBoxStatusName_TextChanged(object sender, EventArgs e)
+        {
+
+            if (String.IsNullOrEmpty(textBoxStatusName.Text))
+            {
+                errorProvider.SetError(textBoxStatusName, "Поле не может быть пустым");
+                btnSaveChanges.Enabled = false;
+            }
+            else
+            {
+                errorProvider.Clear();
+                btnSaveChanges.Enabled = true;
+            }
+            string newStatusName = textBoxStatusName.Text;
+            bool exists = db.Statuses.Any(t => t.StatusName.ToLower() == newStatusName.ToLower());
+            if (exists)
+            {
+                errorProvider.SetError(textBoxStatusName, "Статус с таким именем уже существует");
+                btnSaveChanges.Enabled = false;
+                return;
+            }
+        }
+    }
+}

@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using System.ComponentModel;
+using AppContext = AppTitlesAnime.Models.AppContext;
 
 namespace AppTitlesAnime
 {
     public partial class FormAddType : Form
     {
+        private AppContext db;
         public FormAddType()
         {
             InitializeComponent();
+            this.db = new AppContext();
         }
 
         private void TextBoxTypeName_Validating(object sender, CancelEventArgs e)
@@ -29,9 +24,17 @@ namespace AppTitlesAnime
                 errorProvider.Clear();
                 btnSaveChanges.Enabled = true;
             }
+            string newTypeName = textBoxTypeName.Text;
+            bool exists = db.Types.Any(t => t.TypeName.ToLower() == newTypeName.ToLower());
+            if (exists)
+            {
+                errorProvider.SetError(textBoxTypeName, "Тип с таким именем уже существует");
+                btnSaveChanges.Enabled = false;
+                return;
+            }
         }
 
-        private void textBoxTypeName_TextChaged(object sender, EventArgs e)
+        private void TextBoxTypeName_TextChanged(object sender, EventArgs e)
         {
 
             if (String.IsNullOrEmpty(textBoxTypeName.Text))
@@ -44,16 +47,14 @@ namespace AppTitlesAnime
                 errorProvider.Clear();
                 btnSaveChanges.Enabled = true;
             }
-        }
-
-        private void FormAddType_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panelFill_Paint(object sender, PaintEventArgs e)
-        {
-
+            string newTypeName = textBoxTypeName.Text;
+            bool exists = db.Types.Any(t => t.TypeName.ToLower() == newTypeName.ToLower());
+            if (exists)
+            {
+                errorProvider.SetError(textBoxTypeName, "Тип с таким именем уже существует");
+                btnSaveChanges.Enabled = false;
+                return;
+            }
         }
     }
 }

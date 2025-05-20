@@ -1,18 +1,12 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using AppTitlesAnime.Models;
 using Microsoft.EntityFrameworkCore;
 using AppContext = AppTitlesAnime.Models.AppContext;
 using Type = AppTitlesAnime.Models.Type;
 
 namespace AppTitlesAnime
 {
+
     public partial class FormListTypes : Form
     {
         private AppContext db;
@@ -45,7 +39,7 @@ namespace AppTitlesAnime
             this.db = null;
         }
 
-        private void btnAddType_Click(object sender, EventArgs e)
+        private void BtnAddType_Click(object sender, EventArgs e)
         {
             FormAddType formAddType = new();
             DialogResult result = formAddType.ShowDialog(this);
@@ -64,15 +58,11 @@ namespace AppTitlesAnime
             this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
 
-        }
-
-        private void btnUpdateType_Click(object sender, EventArgs e)
+        private void BtnUpdateType_Click(object sender, EventArgs e)
         {
             if (dataGridViewTypes.SelectedRows.Count == 0)
-                return;  
+                return;
 
             int index = dataGridViewTypes.SelectedRows[0].Index;
             short id = 0;
@@ -80,7 +70,7 @@ namespace AppTitlesAnime
             if (!converted)
                 return;
 
-            Type type=db.Types.Find(id);
+            Type type = db.Types.Find(id);
             FormAddType formAddType = new();
             formAddType.textBoxTypeName.Text = type.TypeName;
 
@@ -89,7 +79,7 @@ namespace AppTitlesAnime
             if (result == DialogResult.Cancel)
                 return;
 
-            type.TypeName= formAddType.textBoxTypeName.Text;
+            type.TypeName = formAddType.textBoxTypeName.Text;
             db.Types.Update(type);
             db.SaveChanges();
 
@@ -98,7 +88,7 @@ namespace AppTitlesAnime
             this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
         }
 
-        private void btnDeleteType_Click(object sender, EventArgs e)
+        private void BtnDeleteType_Click(object sender, EventArgs e)
         {
             if (dataGridViewTypes.SelectedRows.Count == 0)
                 return;
@@ -127,7 +117,6 @@ namespace AppTitlesAnime
             MessageBox.Show("Объект удалён");
 
             this.dataGridViewTypes.DataSource = this.db.Types.Local.OrderBy(o => o.TypeName).ToList();
-
         }
     }
 }

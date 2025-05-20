@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             btnShowTypes = new Button();
+            btnShowGenres = new Button();
+            btnShowStatuses = new Button();
             SuspendLayout();
             // 
             // btnShowTypes
@@ -42,12 +44,36 @@
             btnShowTypes.UseVisualStyleBackColor = true;
             btnShowTypes.Click += btnShowTypes_Click;
             // 
+            // btnShowGenres
+            // 
+            btnShowGenres.AutoSize = true;
+            btnShowGenres.Location = new Point(12, 53);
+            btnShowGenres.Name = "btnShowGenres";
+            btnShowGenres.Size = new Size(329, 35);
+            btnShowGenres.TabIndex = 1;
+            btnShowGenres.Text = "Отобразить список \"Жанры аниме\"";
+            btnShowGenres.UseVisualStyleBackColor = true;
+            btnShowGenres.Click += btnShowGenres_Click;
+            // 
+            // btnShowStatuses
+            // 
+            btnShowStatuses.AutoSize = true;
+            btnShowStatuses.Location = new Point(12, 94);
+            btnShowStatuses.Name = "btnShowStatuses";
+            btnShowStatuses.Size = new Size(337, 35);
+            btnShowStatuses.TabIndex = 2;
+            btnShowStatuses.Text = "Отобразить список \"Статусы аниме\"";
+            btnShowStatuses.UseVisualStyleBackColor = true;
+            btnShowStatuses.Click += btnShowStatuses_Click;
+            // 
             // FormMain
             // 
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(881, 451);
+            Controls.Add(btnShowStatuses);
+            Controls.Add(btnShowGenres);
             Controls.Add(btnShowTypes);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
             Margin = new Padding(5);
@@ -60,5 +86,7 @@
         #endregion
 
         private Button btnShowTypes;
+        private Button btnShowGenres;
+        private Button btnShowStatuses;
     }
 }

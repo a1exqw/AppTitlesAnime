@@ -50,8 +50,8 @@
             flowLayoutPanelTop.ForeColor = SystemColors.Control;
             flowLayoutPanelTop.Location = new Point(0, 0);
             flowLayoutPanelTop.Name = "flowLayoutPanelTop";
-            flowLayoutPanelTop.Padding = new Padding(10);
-            flowLayoutPanelTop.Size = new Size(934, 61);
+            flowLayoutPanelTop.Padding = new Padding(9, 10, 9, 10);
+            flowLayoutPanelTop.Size = new Size(933, 68);
             flowLayoutPanelTop.TabIndex = 0;
             // 
             // btnAddType
@@ -59,48 +59,48 @@
             btnAddType.AutoSize = true;
             btnAddType.BackColor = Color.White;
             btnAddType.ForeColor = Color.Black;
-            btnAddType.Location = new Point(13, 13);
+            btnAddType.Location = new Point(12, 13);
             btnAddType.Name = "btnAddType";
-            btnAddType.Size = new Size(106, 35);
+            btnAddType.Size = new Size(108, 42);
             btnAddType.TabIndex = 0;
             btnAddType.Text = "Добавить";
             btnAddType.UseVisualStyleBackColor = false;
-            btnAddType.Click += btnAddType_Click;
+            btnAddType.Click += BtnAddType_Click;
             // 
             // btnUpdateType
             // 
             btnUpdateType.AutoSize = true;
             btnUpdateType.BackColor = Color.White;
             btnUpdateType.ForeColor = Color.Black;
-            btnUpdateType.Location = new Point(125, 13);
+            btnUpdateType.Location = new Point(126, 13);
             btnUpdateType.Name = "btnUpdateType";
-            btnUpdateType.Size = new Size(151, 35);
+            btnUpdateType.Size = new Size(152, 42);
             btnUpdateType.TabIndex = 1;
             btnUpdateType.Text = "Редактировать";
             btnUpdateType.UseVisualStyleBackColor = false;
-            btnUpdateType.Click += btnUpdateType_Click;
+            btnUpdateType.Click += BtnUpdateType_Click;
             // 
             // btnDeleteType
             // 
             btnDeleteType.AutoSize = true;
             btnDeleteType.BackColor = Color.White;
             btnDeleteType.ForeColor = Color.Black;
-            btnDeleteType.Location = new Point(282, 13);
+            btnDeleteType.Location = new Point(284, 13);
             btnDeleteType.Name = "btnDeleteType";
-            btnDeleteType.Size = new Size(92, 35);
+            btnDeleteType.Size = new Size(96, 42);
             btnDeleteType.TabIndex = 2;
             btnDeleteType.Text = "Удалить";
             btnDeleteType.UseVisualStyleBackColor = false;
-            btnDeleteType.Click += btnDeleteType_Click;
+            btnDeleteType.Click += BtnDeleteType_Click;
             // 
             // panelFill
             // 
             panelFill.Controls.Add(dataGridViewTypes);
             panelFill.Dock = DockStyle.Fill;
-            panelFill.Location = new Point(0, 61);
+            panelFill.Location = new Point(0, 68);
             panelFill.Name = "panelFill";
-            panelFill.Padding = new Padding(10);
-            panelFill.Size = new Size(934, 450);
+            panelFill.Padding = new Padding(9, 10, 9, 10);
+            panelFill.Size = new Size(933, 444);
             panelFill.TabIndex = 2;
             // 
             // dataGridViewTypes
@@ -109,12 +109,12 @@
             dataGridViewTypes.BackgroundColor = Color.White;
             dataGridViewTypes.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewTypes.Dock = DockStyle.Fill;
-            dataGridViewTypes.Location = new Point(10, 10);
+            dataGridViewTypes.Location = new Point(9, 10);
             dataGridViewTypes.MultiSelect = false;
             dataGridViewTypes.Name = "dataGridViewTypes";
             dataGridViewTypes.ReadOnly = true;
             dataGridViewTypes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridViewTypes.Size = new Size(914, 430);
+            dataGridViewTypes.Size = new Size(915, 424);
             dataGridViewTypes.TabIndex = 3;
             // 
             // FormListTypes
@@ -122,11 +122,11 @@
             AutoScaleDimensions = new SizeF(11F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(934, 511);
+            ClientSize = new Size(933, 512);
             Controls.Add(panelFill);
             Controls.Add(flowLayoutPanelTop);
             Font = new Font("Segoe UI", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            Margin = new Padding(5);
+            Margin = new Padding(5, 5, 5, 5);
             Name = "FormListTypes";
             Text = "Список типов аниме  ";
             flowLayoutPanelTop.ResumeLayout(false);
